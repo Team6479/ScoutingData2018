@@ -60,7 +60,7 @@ class Team:
         total = ""
         for x in list:
             total += x + "\n"
-        return x
+        return total
 
     # format this class for output
     def info(self):
