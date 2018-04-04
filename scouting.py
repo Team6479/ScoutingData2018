@@ -1,13 +1,26 @@
 #!/usr/bin/python3
 
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+try:
+    import gspread
+except ImportError:
+    print("You need to install gspread on this computer")
+    exit(1)
+try:
+    from oauth2client.service_account import ServiceAccountCredentials
+except ImportError:
+    print("You need to install oauth2client on this computer")
+    exit(1)
+
 import sys
 from grab import grabdata, grabrecord
 
 # authroize credentials
 scope = ['https://spreadsheets.google.com/feeds']
-creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+try:
+    creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+except FileNotFoundError:
+    print("Please follow the directions in the README to install client_secret.json")
+    exit(1)
 client = gspread.authorize(creds)
 
 # if no cmd line args
