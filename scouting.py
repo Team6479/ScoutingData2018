@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 try:
     import gspread
 except ImportError:
